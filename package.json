@@ -2,7 +2,8 @@
   "private": true,
   "name": "csv-make",
   "version": "1.0.0",
-  "description": "Mobile Moodle: generate CSV for user import.",
+  "bin": "./bin/csv-make.js",
+  "description": "Moodle: generate a CSV file for user import.",
   "author": "© Nick Freear, 28-Sep-2018.",
   "repository": "https://github.com/nfreear/csv-make.git",
   "dependencies": {
@@ -10,6 +11,7 @@
     "numeral": "^2.0.6"
   },
   "scripts": {
-    "build": "node ./bin/csv-make.js > data-users.csv"
+    "copy-config": "cp -n ./config-EXAMPLE.json ./config.json",
+    "build": "node ./bin/csv-make.js > ./user-import.csv"
   }
 }

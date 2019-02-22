@@ -1,62 +1,30 @@
 #!/usr/bin/env node
 
 /*!
-  Mobile Moodle: generate CSV for user import.
-
-  ( 'otu' One-file npm-package Javascript. )
+  Moodle: generate a CSV file for user import.
 
   © Nick Freear / 28-Sep-2018.
 */
 
-/* {
-  "name": "csv-make",
-  "version": "1.0.0",
-  "dependencies": {
-    "jsonexport": "^2.3.0",
-    "numeral": "^2.0.6"
-  },
-  "scripts": {
-    "build": "node ./cli.js > data.csv"
-  }
-} */
-
-const _PKG_ = `
-dependencies:
-  jsonexport: ^2.3.0
-  numeral: ^2.0.6
-`;
-
-const jsonexport = require('jsonexport');
-const numeral = require('numeral');
-// const CONFIG = require('./config.json');
-
-const ROW_START = 501;
-const ROW_END = 520; // CONFIG.rowCount; // 500;
 // username,password,firstname,lastname,email,course1,role1,maildisplay,country
 // xxx001,yyyy001zzzz,Joe,001,xxx+TAG-001@example.com,EXAMPLE,student,0,ZZ
 // xxx002,yyyy002zzzz,Joe,002,xxx+TAG-002@example.com,EXAMPLE,student,0,ZZ
-const COLUMNS = {
-  "username": "xxx{n000}",        // sl%03d, sl001
-  "password": "yyyy{n000}zzz",  // sL-%03d, sL-001001
-  "firstname": "Joe",
-  "lastname": "{n000}",
-  "email": "xxx+TAG-{n000}@example.com",
-  "course1": "EXAMPLE",
-  "role1": "student",
-  "maildisplay": "0",
-  "country": "ZZ"
-};
 
-const NUM_REGEX = /(.*?)\{n(000)\}(.*)/;
-const NUM_REGEX_2 = /(.*?)\{n(000)\}\{n(000)\}(.*)/;
+const CONFIG = require('../config.json');
+
+const jsonexport = require('jsonexport');
+const numeral = require('numeral');
+
+const NUM_REGEX = new RegExp(CONFIG.numRegex);
+const NUM_REGEX_2 = new RegExp(CONFIG.numRegex_2);
 
 let rows = [];
 
-for (let idx = ROW_START; idx <= ROW_END; idx++) {
+for (let idx = CONFIG.rowStart; idx <= CONFIG.rowEnd; idx++) {
   let row = {};
 
-  for (var key in COLUMNS) {
-    let column = COLUMNS[ key ];
+  for (var key in CONFIG.columns) {
+    let column = CONFIG.columns[ key ];
     // console.log(idx, key, column);
 
     let m = column.match(NUM_REGEX);
