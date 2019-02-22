@@ -1,0 +1,18 @@
+{
+  "#": "username,password,firstname,lastname,email,course1,role1,maildisplay,country",
+  "#.": "xxx001,yyyy001zzzz,Joe,001,xxx+TAG-001@example.com,EXAMPLE,student,0,ZZ",
+  "#,": "xxx002,yyyy002zzzz,Joe,002,xxx+TAG-002@example.com,EXAMPLE,student,0,ZZ",
+
+  "rowCount": 2,
+  "columns": {
+    "username": "xxx{n000}",
+    "password": "yyyy{n000}{n000}zzzz",
+    "firstname": "Joe",
+    "lastname": "{n000}",
+    "email": "xxx+TAG-{n000}@example.com",
+    "course1": "EXAMPLE",
+    "role1": "student",
+    "maildisplay": "0",
+    "country": "ZZ"
+  }
+}
