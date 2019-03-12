@@ -18,6 +18,10 @@ const numeral = require('numeral');
 const NUM_REGEX = new RegExp(CONFIG.numRegex);
 const NUM_REGEX_2 = new RegExp(CONFIG.numRegex_2);
 
+const COUNT = CONFIG.rowEnd - CONFIG.rowStart + 1;
+
+console.warn('Count of rows to be generated: ', COUNT);
+
 let rows = [];
 
 for (let idx = CONFIG.rowStart; idx <= CONFIG.rowEnd; idx++) {

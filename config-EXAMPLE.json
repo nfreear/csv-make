@@ -1,9 +1,13 @@
 {
-  "#": "Configuration for Moodle user-import CSV",
+  "#": [
+    "Configuration for Moodle user-import CSV",
 
-  "# .": "username,password,firstname,lastname,email,course1,role1,maildisplay,country",
-  "# 1": "xxx001,yyyy001zzzz,Joe,001,xxx+TAG-001@example.com,EXAMPLE,student,0,ZZ",
-  "# 2": "xxx002,yyyy002zzzz,Joe,002,xxx+TAG-002@example.com,EXAMPLE,student,0,ZZ",
+    "username,password,firstname,lastname,email,course1,role1,maildisplay,country",
+    "xxx001,yyyy001zzzz,Joe,001,xxx+TAG-001@example.com,EXAMPLE,student,0,ZZ",
+    "xxx002,yyyy002zzzz,Joe,002,xxx+TAG-002@example.com,EXAMPLE,student,0,ZZ"
+  ],
+
+  "#.": "---- EDIT BELOW ----",
 
   "rowStart": 501,
   "rowEnd": 520,
