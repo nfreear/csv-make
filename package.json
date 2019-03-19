@@ -9,10 +9,12 @@
   "repository": "https://github.com/nfreear/csv-make.git",
   "dependencies": {
     "jsonexport": "^2.3.0",
+    "jsonlint": "^1.6.3",
     "numeral": "^2.0.6"
   },
   "scripts": {
     "copy-config": "cp -n ./config-EXAMPLE.json ./config.json",
+    "test": "jsonlint -c ./config.json",
     "build": "node ./bin/csv-make.js > ./user-import.csv"
   }
 }

@@ -26,6 +26,7 @@ const CONFIG = (() => {
 
   } catch (ex) {
     console.error('ERROR:', ex.message, Object.getPrototypeOf(ex));
+    // console.error(ex)
     process.exit(2);
   }
 })();
@@ -35,6 +36,7 @@ const numeral = require('numeral');
 
 const NUM_REGEX = new RegExp(CONFIG.numRegex);
 const NUM_REGEX_2 = new RegExp(CONFIG.numRegex_2);
+const COMMENT_REGEX = /^#/;
 
 const COUNT = CONFIG.rowEnd - CONFIG.rowStart + 1;
 
@@ -47,14 +49,18 @@ for (let idx = CONFIG.rowStart; idx <= CONFIG.rowEnd; idx++) {
 
   for (var key in CONFIG.columns) {
     let column = CONFIG.columns[ key ];
-    // console.log(idx, key, column);
+    // console.warn(idx, key, column);
 
     let m = column.match(NUM_REGEX);
     let m2 = column.match(NUM_REGEX_2);
 
+    let mc = key.match(COMMENT_REGEX); // Note: 'key'
+
     // console.log(idx, m);
 
-    if (m2) {
+    if (mc) {
+      // Skip comments ...
+    } else if (m2) {
       row[ key ] = m[ 1 ] + numeral(idx).format(m[ 2 ]) + numeral(idx).format(m[ 3 ]) + ( m[ 4 ] || '');
     } else if (m) {
       row[ key ] = m[ 1 ] + numeral(idx).format(m[ 2 ]) + (m[ 3 ] || '');
