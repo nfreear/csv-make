@@ -3,7 +3,8 @@
   "name": "csv-make",
   "version": "1.0.0",
   "bin": "./bin/csv-make.js",
-  "description": "Moodle: generate a CSV file for user import.",
+  "description": "Generate a CSV file to import user accounts into Moodle.",
+  "license": "MIT",
   "author": "© Nick Freear, 28-Sep-2018.",
   "repository": "https://github.com/nfreear/csv-make.git",
   "dependencies": {

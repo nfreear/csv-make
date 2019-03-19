@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*!
-  Moodle: generate a CSV file for user import.
+  Generate a CSV file to import user accounts into Moodle.
 
   © Nick Freear / 28-Sep-2018.
 */
@@ -10,7 +10,25 @@
 // xxx001,yyyy001zzzz,Joe,001,xxx+TAG-001@example.com,EXAMPLE,student,0,ZZ
 // xxx002,yyyy002zzzz,Joe,002,xxx+TAG-002@example.com,EXAMPLE,student,0,ZZ
 
-const CONFIG = require('../config.json');
+const CONFIG = (() => {
+  try {
+    const ALL_CONFIG = require('../config.json');
+    const CFG_GROUP = ALL_CONFIG.group;
+
+    console.warn('Configuration group:', CFG_GROUP);
+
+    const CONFIG = ALL_CONFIG[ CFG_GROUP ];
+
+    CONFIG.numRegex = ALL_CONFIG.numRegex;
+    CONFIG.numRegex_2 = ALL_CONFIG.numRegex_2;
+
+    return CONFIG;
+
+  } catch (ex) {
+    console.error('ERROR:', ex.message, Object.getPrototypeOf(ex));
+    process.exit(2);
+  }
+})();
 
 const jsonexport = require('jsonexport');
 const numeral = require('numeral');
